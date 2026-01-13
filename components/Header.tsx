@@ -50,14 +50,29 @@ export default function Header() {
 
   return (
     <header className="bg-geel flex gap-4 lg:gap-16 items-center px-4 lg:px-16 py-0 sticky top-0 z-50 w-full shadow-md">
-      <div className="flex gap-2 items-center relative flex-1 lg:flex-initial">
-        <div className="relative shrink-0 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] aspect-square">
-          <Image src={imgHarlekijnSticker1} alt="Harlekijn Sticker" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+      <a 
+        href="#" 
+        onClick={(e) => {
+          e.preventDefault()
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }}
+        className="flex gap-2 items-center relative flex-1 lg:flex-initial hover:opacity-90 transition-opacity cursor-pointer"
+        aria-label="Ga naar bovenkant van de pagina"
+      >
+        <div className="relative shrink-0 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] aspect-square group">
+          <Image 
+            src={imgHarlekijnSticker1} 
+            alt="Harlekijn Sticker" 
+            fill 
+            className="object-contain transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" 
+            unoptimized 
+            style={{ objectFit: 'contain' }} 
+          />
         </div>
         <p className="font-display leading-[32px] lg:leading-[48px] text-[24px] lg:text-[40px] text-black text-center tracking-[1.2px] uppercase">
           Heist viert Carnaval
         </p>
-      </div>
+      </a>
       
       {/* Desktop Navigation */}
       <nav 
