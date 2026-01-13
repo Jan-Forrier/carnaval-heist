@@ -1,8 +1,81 @@
-import Image from 'next/image'
+'use client'
 
-const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+// Generate array of 20 images from local folder
+// Place your images in public/images/fotogalerij/
+const images = Array.from({ length: 20 }, (_, i) => ({
+  id: i + 1,
+  src: i === 0 
+    ? `/images/fotogalerij/DSC08081.jpg`
+    : `/images/fotogalerij/foto-${i + 1}.jpg`,
+  alt: `Foto ${i + 1}`
+}))
 
 export default function Fotogalerij() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
+  const carouselRef = useRef<HTMLDivElement>(null)
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Calculate items per view based on screen size
+  const itemsPerView = isMobile ? 1 : 3
+  const totalSlides = Math.ceil(images.length / itemsPerView)
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(Math.max(0, Math.min(index, totalSlides - 1)))
+  }
+
+  const goToPrevious = () => {
+    goToSlide(currentIndex - 1)
+  }
+
+  const goToNext = () => {
+    goToSlide(currentIndex + 1)
+  }
+
+  // Touch handlers for swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      goToNext()
+    }
+    if (isRightSwipe) {
+      goToPrevious()
+    }
+  }
+
+  // Get visible images for current slide
+  const getVisibleImages = () => {
+    const start = currentIndex * itemsPerView
+    return images.slice(start, start + itemsPerView)
+  }
+
   return (
     <section className="bg-licht-geel flex items-start px-4 sm:px-8 md:px-16 py-16 sm:py-24 md:py-32 relative w-full">
       <div className="flex flex-col items-start relative shrink-0 w-full max-w-[1440px] mx-auto">
@@ -16,22 +89,81 @@ export default function Fotogalerij() {
             Herbeleef hier de zotste momenten van Carnaval Heist , gegarandeerd glimlachen verzekerd!
           </p>
         </div>
-        <div className="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-[repeat(1,_fit-content(100%))] relative shrink-0 w-full mt-8">
-          <div className="col-[1] flex flex-col aspect-[4/3] items-start justify-self-stretch relative row-[1] shrink-0">
-            <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden">
-              <Image src={imgDsc080813} alt="" fill className="object-cover" unoptimized style={{ objectFit: 'cover' }} />
-            </div>
+        
+        {/* Carousel Container */}
+        <div className="flex items-center gap-4 w-full mt-8">
+          {/* Left Arrow */}
+          <button
+            onClick={goToPrevious}
+            disabled={currentIndex === 0}
+            className="flex-shrink-0 bg-black/50 hover:bg-black/70 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 rounded-full transition-all"
+            aria-label="Vorige foto's"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {/* Images Grid/Carousel */}
+          <div
+            ref={carouselRef}
+            className="flex-1 gap-4 grid grid-cols-1 md:grid-cols-3 relative w-full overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {getVisibleImages().map((image, idx) => (
+              <div key={image.id} className="flex flex-col aspect-[4/3] items-start justify-self-stretch relative shrink-0">
+                <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden rounded-lg bg-gray-200">
+                  <Image 
+                    src={image.src} 
+                    alt={image.alt} 
+                    fill 
+                    className="object-cover transition-transform duration-300 hover:scale-105" 
+                    unoptimized 
+                    style={{ objectFit: 'cover' }} 
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.style.display = 'none'
+                      const placeholder = target.parentElement?.querySelector('.image-placeholder')
+                      if (placeholder) {
+                        (placeholder as HTMLElement).style.display = 'flex'
+                      }
+                    }}
+                  />
+                  <div className="image-placeholder hidden absolute inset-0 items-center justify-center bg-gray-200 text-gray-400">
+                    <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="col-[2] flex flex-col aspect-[4/3] items-start justify-self-stretch relative row-[1] shrink-0">
-            <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden">
-              <Image src={imgDsc080813} alt="" fill className="object-cover" unoptimized style={{ objectFit: 'cover' }} />
-            </div>
-          </div>
-          <div className="col-[3] flex flex-col aspect-[4/3] items-start justify-self-stretch relative row-[1] shrink-0">
-            <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden">
-              <Image src={imgDsc080813} alt="" fill className="object-cover" unoptimized style={{ objectFit: 'cover' }} />
-            </div>
-          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={goToNext}
+            disabled={currentIndex === totalSlides - 1}
+            className="flex-shrink-0 bg-black/50 hover:bg-black/70 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 rounded-full transition-all"
+            aria-label="Volgende foto's"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center items-center gap-2 mt-6">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentIndex 
+                  ? 'w-8 bg-black' 
+                  : 'w-2 bg-black/30 hover:bg-black/50'
+              }`}
+              aria-label={`Ga naar slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
