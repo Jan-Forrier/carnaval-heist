@@ -64,7 +64,7 @@ export default function Carnavalstermen() {
               Ontdek de belangrijkste begrippen en tradities.
             </p>
           </div>
-          <div className="flex flex-1 flex-col items-start relative">
+          <div className="flex flex-1 flex-col items-start relative w-full">
             {faqItems.map((item) => {
               const isOpen = openItems.includes(item.id)
               return (
