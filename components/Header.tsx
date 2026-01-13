@@ -8,6 +8,7 @@ const imgHarlekijnSticker1 = "https://www.figma.com/api/mcp/asset/cdeb4ae5-e0d0-
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [headerHeight, setHeaderHeight] = useState(80)
 
   useEffect(() => {
     const checkMobile = () => {
@@ -21,6 +22,8 @@ export default function Header() {
           // Show hamburger if nav would overflow or screen is less than 1024px
           setIsMobile(window.innerWidth < 1024 || navRect.width > headerRect.width - 200)
         }
+        // Update header height
+        setHeaderHeight(header.getBoundingClientRect().height)
       }
     }
 
@@ -169,7 +172,8 @@ export default function Header() {
         id="mobile-menu"
         role="navigation"
         aria-label="Mobiel navigatiemenu"
-        className={`fixed top-[80px] left-0 right-0 w-full bg-geel shadow-lg z-40 transform transition-all duration-300 ease-in-out ${
+        style={{ top: `${headerHeight}px` }}
+        className={`sticky left-0 right-0 w-full bg-geel shadow-lg z-40 transform transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'
         }`}
         aria-hidden={!isMenuOpen}
