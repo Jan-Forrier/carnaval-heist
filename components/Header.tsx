@@ -173,7 +173,7 @@ export default function Header() {
         role="navigation"
         aria-label="Mobiel navigatiemenu"
         style={{ top: `${headerHeight}px` }}
-        className={`sticky left-0 right-0 w-full bg-geel shadow-lg z-40 transform transition-all duration-300 ease-in-out ${
+        className={`fixed left-0 right-0 w-full bg-geel shadow-lg z-40 transform transition-all duration-300 ease-in-out ${
           isMenuOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'
         }`}
         aria-hidden={!isMenuOpen}
