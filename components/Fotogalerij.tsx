@@ -4,21 +4,25 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-// Generate array of 20 images from local folder
-// Place your images in public/images/fotogalerij/
-const images = Array.from({ length: 20 }, (_, i) => ({
-  id: i + 1,
-  src: i === 0 
-    ? `/images/fotogalerij/DSC08081.jpg`
-    : `/images/fotogalerij/foto-${i + 1}.jpg`,
-  alt: `Foto ${i + 1}`
-}))
+// Array of 9 images from local folder
+const images = [
+  { id: 1, src: '/images/fotogalerij/DSC08081.jpg', alt: 'Carnaval foto 1' },
+  { id: 2, src: '/images/fotogalerij/Carnaval-3.jpg', alt: 'Carnaval foto 2' },
+  { id: 3, src: '/images/fotogalerij/Carnaval-10.jpg', alt: 'Carnaval foto 3' },
+  { id: 4, src: '/images/fotogalerij/Carnaval-70.jpg', alt: 'Carnaval foto 4' },
+  { id: 5, src: '/images/fotogalerij/Carnaval-85.jpg', alt: 'Carnaval foto 5' },
+  { id: 6, src: '/images/fotogalerij/Carnaval-267.jpg', alt: 'Carnaval foto 6' },
+  { id: 7, src: '/images/fotogalerij/DSC00301.jpg', alt: 'Carnaval foto 7' },
+  { id: 8, src: '/images/fotogalerij/DSC00310.jpg', alt: 'Carnaval foto 8' },
+  { id: 9, src: '/images/fotogalerij/DSC09896.jpg', alt: 'Carnaval foto 9' },
+]
 
 export default function Fotogalerij() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
   const carouselRef = useRef<HTMLDivElement>(null)
 
   // Check if mobile
@@ -110,33 +114,35 @@ export default function Fotogalerij() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {getVisibleImages().map((image, idx) => (
-              <div key={image.id} className="flex flex-col aspect-[4/3] items-start justify-self-stretch relative shrink-0">
-                <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden rounded-lg bg-gray-200">
-                  <Image 
-                    src={image.src} 
-                    alt={image.alt} 
-                    fill 
-                    className="object-cover transition-transform duration-300 hover:scale-105" 
-                    unoptimized 
-                    style={{ objectFit: 'cover' }} 
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement
-                      target.style.display = 'none'
-                      const placeholder = target.parentElement?.querySelector('.image-placeholder')
-                      if (placeholder) {
-                        (placeholder as HTMLElement).style.display = 'flex'
-                      }
-                    }}
-                  />
-                  <div className="image-placeholder hidden absolute inset-0 items-center justify-center bg-gray-200 text-gray-400">
-                    <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+            {getVisibleImages().map((image, idx) => {
+              const hasError = imageErrors[image.id] || false
+              
+              return (
+                <div key={image.id} className="flex flex-col aspect-[4/3] items-start justify-self-stretch relative shrink-0">
+                  <div className="flex-1 min-h-0 min-w-0 relative w-full overflow-hidden rounded-lg bg-gray-200">
+                    {!hasError ? (
+                      <Image 
+                        src={image.src} 
+                        alt={image.alt} 
+                        fill 
+                        className="object-cover transition-transform duration-300 hover:scale-105" 
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                        quality={85}
+                        onError={() => {
+                          setImageErrors(prev => ({ ...prev, [image.id]: true }))
+                        }}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-200 text-gray-400">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Right Arrow */}

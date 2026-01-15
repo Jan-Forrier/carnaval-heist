@@ -8,7 +8,8 @@ const nextConfig = {
         pathname: '/api/mcp/asset/**',
       },
     ],
-    unoptimized: true, // For Figma assets
+    // Local images will be automatically optimized to WebP/AVIF
+    formats: ['image/avif', 'image/webp'],
   },
 }
 
