@@ -1,7 +1,7 @@
 import Image from 'next/image'
+import { Baby } from 'lucide-react'
 
 const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
-const imgLucideBaby = "https://www.figma.com/api/mcp/asset/70bd3498-0590-41a3-9e91-b4b7c58a9064"
 
 export default function Kinderen() {
   return (
@@ -12,8 +12,8 @@ export default function Kinderen() {
             <div className="flex flex-col gap-4 items-center relative">
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-center relative">
                 <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                  <div className="relative w-8 h-8 aspect-square">
-                    <Image src={imgLucideBaby} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                  <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                    <Baby className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                   </div>
                 </div>
                 <h2 className="font-display text-fluid-display text-black tracking-[1.92px] uppercase text-center">

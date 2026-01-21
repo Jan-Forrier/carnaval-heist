@@ -1,6 +1,4 @@
-import Image from 'next/image'
-
-const imgGroenePrins = "https://www.figma.com/api/mcp/asset/3a7c0494-0c2e-42a7-a09c-90bcd41ccba3"
+import { Harlekijn } from './icons/Harlekijn'
 
 export default function Hero() {
   return (
@@ -15,7 +13,7 @@ export default function Hero() {
           </p>
         </div>
         <div className="aspect-[263/500] relative w-full max-w-[263px] lg:w-[263.313px] shrink-0">
-          <Image src={imgGroenePrins} alt="Groene Prins" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+          <Harlekijn className="w-full h-full object-contain" aria-label="Groene Prins" />
         </div>
       </div>
     </section>

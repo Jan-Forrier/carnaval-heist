@@ -1,14 +1,5 @@
 import Image from 'next/image'
-
-const imgLucideBike = "https://www.figma.com/api/mcp/asset/0a906140-7dbf-49c2-8f8f-34175319d313"
-const imgLucideBus = "https://www.figma.com/api/mcp/asset/e4c505da-894a-4de0-bb20-f8588215b667"
-const imgLucideCar = "https://www.figma.com/api/mcp/asset/d8ab9029-041b-4da9-8719-91b7f70a2f4f"
-const imgLucideCircleParking = "https://www.figma.com/api/mcp/asset/2f5df2a8-124d-4293-a349-24fe03974dcb"
-const imgLucideAccessibility = "https://www.figma.com/api/mcp/asset/8320063c-fbe8-4e3e-be13-6ed36a067f7d"
-const imgLucideCross = "https://www.figma.com/api/mcp/asset/d68656a4-17a9-4e32-8e91-6a19a165cf10"
-const imgLucideToilet = "https://www.figma.com/api/mcp/asset/93876862-509e-4ffb-adbe-76173f1a4747"
-const imgLucideScale = "https://www.figma.com/api/mcp/asset/5f3f865a-d24c-4d87-ac6c-e8df5e7d0575"
-const imgLucideLeaf = "https://www.figma.com/api/mcp/asset/b466dafd-d5d1-4f5a-8d00-bcec20d1b814"
+import { Bike, Bus, Car, ParkingCircle, Accessibility, Cross, Toilet, Scale, Leaf } from 'lucide-react'
 
 export default function Praktisch() {
   return (
@@ -38,8 +29,8 @@ export default function Praktisch() {
                     </p>
                     <div className="flex gap-4 items-center justify-center relative w-full">
                       <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                        <div className="relative w-8 h-8 aspect-square">
-                          <Image src={imgLucideBike} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                        <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                          <Bike className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                         </div>
                       </div>
                       <p className="flex-1 font-body font-normal leading-normal text-[#281d1b] text-[16px]">
@@ -48,8 +39,8 @@ export default function Praktisch() {
                     </div>
                     <div className="flex gap-[10px] items-center justify-center relative w-full">
                       <div className="bg-licht-geel flex items-center justify-center relative rounded-[24px] shrink-0 w-12 h-12">
-                        <div className="relative w-8 h-8 aspect-square">
-                          <Image src={imgLucideBus} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                        <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                          <Bus className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                         </div>
                       </div>
                       <p className="flex-1 font-body font-normal leading-normal text-[#281d1b] text-[16px]">
@@ -62,8 +53,8 @@ export default function Praktisch() {
                     </div>
                     <div className="flex gap-[10px] items-center justify-center relative w-full">
                       <div className="bg-licht-geel flex items-center justify-center relative rounded-[24px] shrink-0 w-12 h-12">
-                        <div className="relative w-8 h-8 aspect-square">
-                          <Image src={imgLucideCar} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                        <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                          <Car className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                         </div>
                       </div>
                       <p className="flex-1 font-body font-normal leading-normal text-[#281d1b] text-[16px]">
@@ -72,8 +63,8 @@ export default function Praktisch() {
                     </div>
                     <div className="flex gap-[10px] items-start relative w-full">
                       <div className="bg-licht-geel flex items-center justify-center relative rounded-[24px] shrink-0 w-12 h-12">
-                        <div className="relative w-8 h-8 aspect-square">
-                          <Image src={imgLucideCircleParking} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                        <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                          <ParkingCircle className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                         </div>
                       </div>
                       <div className="flex-1 font-body font-normal leading-normal text-[#281d1b] text-[16px]">
@@ -93,8 +84,8 @@ export default function Praktisch() {
                 <div className="flex flex-col gap-4 items-start relative w-full">
                   <div className="flex gap-4 items-start relative w-full">
                     <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                      <div className="relative w-8 h-8 aspect-square">
-                        <Image src={imgLucideAccessibility} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                      <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                        <Accessibility className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                       </div>
                     </div>
                     <p className="flex-1 font-body font-semibold leading-normal text-fluid-h2 text-black">
@@ -117,8 +108,8 @@ export default function Praktisch() {
                 <div className="flex flex-col gap-4 items-start relative w-full">
                   <div className="flex gap-4 items-start relative w-full">
                     <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                      <div className="relative w-8 h-8 aspect-square">
-                        <Image src={imgLucideCross} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                      <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                        <Cross className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                       </div>
                     </div>
                     <p className="flex-1 font-body font-semibold leading-normal text-[#281d1b] text-fluid-h2">
@@ -143,8 +134,8 @@ export default function Praktisch() {
                 <div className="flex flex-col gap-4 items-start relative w-full">
                   <div className="flex gap-4 items-start relative w-full">
                     <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                      <div className="relative w-8 h-8 aspect-square">
-                        <Image src={imgLucideToilet} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                      <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                        <Toilet className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                       </div>
                     </div>
                     <p className="flex-1 font-body font-semibold leading-normal text-[#281d1b] text-fluid-h2">
@@ -187,8 +178,8 @@ export default function Praktisch() {
                 <div className="flex flex-col gap-4 items-start relative w-full">
                   <div className="flex gap-4 items-start relative w-full">
                     <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                      <div className="relative w-8 h-8 aspect-square">
-                        <Image src={imgLucideScale} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                      <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                        <Scale className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                       </div>
                     </div>
                     <p className="flex-1 font-body font-semibold leading-normal text-[#281d1b] text-fluid-h2">
@@ -210,8 +201,8 @@ export default function Praktisch() {
                 <div className="flex flex-col gap-4 items-start relative w-full">
                   <div className="flex gap-4 items-start relative w-full">
                     <div className="bg-licht-geel flex items-center overflow-hidden p-2 relative rounded-[24px] shrink-0">
-                      <div className="relative w-8 h-8 aspect-square">
-                        <Image src={imgLucideLeaf} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                      <div className="relative w-8 h-8 aspect-square text-[#281d1b]">
+                        <Leaf className="w-8 h-8" strokeWidth={2} aria-hidden="true" />
                       </div>
                     </div>
                     <p className="flex-1 font-body font-semibold leading-normal text-[#281d1b] text-fluid-h2">

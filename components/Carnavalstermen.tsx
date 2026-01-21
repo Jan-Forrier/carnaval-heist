@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-
-const imgChevronDown = "https://www.figma.com/api/mcp/asset/146eae01-85f2-43ab-b544-7f0c55adb128"
+import { ChevronDown } from 'lucide-react'
 const imgDivider = "https://www.figma.com/api/mcp/asset/086ed33b-9d15-4f89-aea2-4b07701c11e6"
 
 const faqItems = [
@@ -76,8 +75,8 @@ export default function Carnavalstermen() {
                     <p className="flex-1 font-body font-semibold leading-normal text-[#1b2128] text-fluid-body-lg">
                       {item.question}
                     </p>
-                    <div className={`relative w-6 h-6 shrink-0 aspect-square transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
-                      <Image src={imgChevronDown} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+                    <div className={`relative w-6 h-6 shrink-0 aspect-square transition-transform duration-200 text-[#1b2128] ${isOpen ? 'rotate-180' : ''}`}>
+                      <ChevronDown className="w-6 h-6" strokeWidth={2} aria-hidden="true" />
                     </div>
                   </button>
                   {isOpen && (

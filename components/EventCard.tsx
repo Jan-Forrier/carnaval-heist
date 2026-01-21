@@ -1,7 +1,7 @@
 import Image from 'next/image'
+import { MapPin } from 'lucide-react'
 
 const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
-const imgLucideMapPin = "https://www.figma.com/api/mcp/asset/471a3051-e1d8-4473-9590-b0479624e2d2"
 
 interface EventCardProps {
   time: string
@@ -28,10 +28,10 @@ export default function EventCard({ time, title, description, location, location
           {typeof description === 'string' ? <p>{description}</p> : description}
         </div>
       </div>
-      <div className="flex flex-row items-center shrink-0 w-full md:w-auto">
-        <div className="flex gap-2 h-full items-center justify-start md:justify-center relative w-full md:w-[230px]">
-          <div className="relative w-4 h-4 shrink-0 aspect-square">
-            <Image src={imgLucideMapPin} alt="" fill className="object-contain" unoptimized style={{ objectFit: 'contain' }} />
+      <div className="flex flex-col md:flex-row items-start md:items-center shrink-0 w-full md:w-auto">
+        <div className="flex gap-2 h-full items-start md:items-center justify-start md:justify-center relative w-full md:w-[230px]">
+          <div className="relative w-4 h-4 shrink-0 aspect-square text-black">
+            <MapPin className="w-4 h-4" aria-hidden="true" />
           </div>
           {locationLink ? (
             <a href={locationLink} className="font-body font-normal leading-normal text-fluid-body text-black underline break-words">

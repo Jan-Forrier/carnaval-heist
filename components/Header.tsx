@@ -1,9 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
-
-const imgHarlekijnSticker1 = "https://www.figma.com/api/mcp/asset/cdeb4ae5-e0d0-4628-95c2-c282f1df436e"
+import { HarlekijnSticker } from './icons/HarlekijnSticker'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -75,14 +73,7 @@ export default function Header() {
         aria-label="Ga naar bovenkant van de pagina"
       >
         <div className="relative shrink-0 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] aspect-square group">
-          <Image 
-            src={imgHarlekijnSticker1} 
-            alt="Harlekijn Sticker" 
-            fill 
-            className="object-contain transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" 
-            unoptimized 
-            style={{ objectFit: 'contain' }} 
-          />
+          <HarlekijnSticker className="w-full h-full transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
         </div>
         <p className="font-display text-black text-center uppercase whitespace-nowrap text-fluid-header-title">
           Heist viert Carnaval
