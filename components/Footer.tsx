@@ -31,14 +31,14 @@ export default function Footer() {
               Volg ons op
             </p>
             <div className="flex flex-col items-start relative w-full md:w-[259px]">
-              <div className="flex gap-2 items-center relative">
+              <a href="https://www.facebook.com/heistcarnaval/" target="_blank" rel="noopener noreferrer" className="flex gap-2 items-center relative group">
                 <div className="aspect-[20/19.879] relative w-5 shrink-0 text-black">
                   <Facebook className="w-5 h-5" strokeWidth={2} aria-hidden="true" />
                 </div>
-                <p className="font-body font-normal leading-[1.5] text-fluid-body text-black">
+                <p className="font-body font-normal leading-[1.5] text-fluid-body text-black underline group-hover:shadow-sm transition-shadow">
                   heistcarnaval
                 </p>
-              </div>
+              </a>
             </div>
           </div>
         </div>

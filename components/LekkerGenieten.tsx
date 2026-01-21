@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import { UtensilsCrossed } from 'lucide-react'
 
-const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
-
 export default function LekkerGenieten() {
   return (
     <section className="flex flex-col items-start px-0 py-16 sm:py-24 md:py-32 relative w-full">
@@ -28,8 +26,8 @@ export default function LekkerGenieten() {
               Op dinsdag mag je jezelf verwennen met heel wat lekkers. Het is dan namelijk de laatste dag voor de vastenperiode en daarom is het traditie om oliebollen te bakken of heerlijke lekkernijen te kopen. Je kan het hele jaar door voor de beste patisserie terecht bij de bakkers in Knokke-Heist.
             </p>
           </div>
-          <div className="aspect-[600/400] relative shrink-0 w-full md:w-[600px] overflow-hidden">
-            <Image src={imgDsc080813} alt="" fill className="object-cover" unoptimized style={{ objectFit: 'cover' }} />
+          <div className="aspect-[600/400] relative shrink-0 w-full md:w-[600px] overflow-hidden rounded-lg">
+            <Image src="/images/fotogalerij/vette dinsdag.jpg" alt="" fill className="object-cover rounded-lg" unoptimized style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </div>
