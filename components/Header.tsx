@@ -1,9 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { HarlekijnSticker } from './icons/HarlekijnSticker'
 
 export default function Header() {
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [headerHeight, setHeaderHeight] = useState(80)
@@ -63,14 +67,10 @@ export default function Header() {
   return (
     <>
     <header className="bg-geel flex gap-4 lg:gap-16 items-center justify-between px-4 lg:px-16 py-0 sticky top-0 z-50 w-full shadow-md">
-      <a 
-        href="#" 
-        onClick={(e) => {
-          e.preventDefault()
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }}
+      <Link 
+        href="/"
         className="flex gap-2 items-center relative flex-shrink-0 hover:opacity-90 transition-opacity cursor-pointer"
-        aria-label="Ga naar bovenkant van de pagina"
+        aria-label="Ga naar homepage"
       >
         <div className="relative shrink-0 w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] aspect-square group">
           <HarlekijnSticker className="w-full h-full transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
@@ -78,7 +78,7 @@ export default function Header() {
         <p className="font-display text-black text-center uppercase whitespace-nowrap text-fluid-header-title">
           Heist viert Carnaval
         </p>
-      </a>
+      </Link>
       
       {/* Desktop Navigation */}
       <nav 
@@ -87,41 +87,86 @@ export default function Header() {
         aria-label="Hoofdnavigatie"
       >
         <div className="flex h-full items-center gap-4">
-          <a 
-            href="#programma" 
+          <Link 
+            href="/#programma"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('programma')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
             aria-label="Ga naar Programma sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Programma</p>
-          </a>
-          <a 
-            href="#praktisch" 
+          </Link>
+          <Link 
+            href="/#praktisch"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('praktisch')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
             aria-label="Ga naar Praktisch sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Praktisch</p>
-          </a>
-          <a 
-            href="#kinderen" 
+          </Link>
+          <Link 
+            href="/#kinderen"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('kinderen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
             aria-label="Ga naar Kinderen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Kinderen</p>
-          </a>
-          <a 
-            href="#carnavalstermen" 
+          </Link>
+          <Link 
+            href="/#carnavalstermen"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('carnavalstermen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
             aria-label="Ga naar Carnavalstermen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Carnavalstermen</p>
-          </a>
-          <a 
-            href="#deelnemen" 
+          </Link>
+          <Link 
+            href="/#deelnemen"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('deelnemen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
             aria-label="Ga naar Deelnemen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Deelnemen</p>
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -170,46 +215,91 @@ export default function Header() {
         aria-hidden={!isMenuOpen}
       >
         <div className="flex flex-col pt-6 pb-8 px-6 overflow-y-auto max-h-[calc(100vh-80px)]">
-          <a
-            href="#programma"
-            onClick={closeMenu}
+          <Link
+            href="/#programma"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('programma')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
             aria-label="Ga naar Programma sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Programma</p>
-          </a>
-          <a
-            href="#praktisch"
-            onClick={closeMenu}
+          </Link>
+          <Link
+            href="/#praktisch"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('praktisch')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
             aria-label="Ga naar Praktisch sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Praktisch</p>
-          </a>
-          <a
-            href="#kinderen"
-            onClick={closeMenu}
+          </Link>
+          <Link
+            href="/#kinderen"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('kinderen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
             aria-label="Ga naar Kinderen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Kinderen</p>
-          </a>
-          <a
-            href="#carnavalstermen"
-            onClick={closeMenu}
+          </Link>
+          <Link
+            href="/#carnavalstermen"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('carnavalstermen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
             aria-label="Ga naar Carnavalstermen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Carnavalstermen</p>
-          </a>
-          <a
-            href="#deelnemen"
-            onClick={closeMenu}
+          </Link>
+          <Link
+            href="/#deelnemen"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('deelnemen')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
             aria-label="Ga naar Deelnemen sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Deelnemen</p>
-          </a>
+          </Link>
         </div>
       </nav>
     )}

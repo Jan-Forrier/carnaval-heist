@@ -1,6 +1,10 @@
+'use client'
+
 import { Facebook } from 'lucide-react'
+import { useCookieConsent } from './cookie-consent/cookie-context'
 
 export default function Footer() {
+  const { showPreferences } = useCookieConsent()
   return (
     <footer className="bg-groen flex flex-col items-center justify-center overflow-hidden relative w-full">
       <div className="bg-groen border-t border-white flex flex-col md:flex-row items-start md:items-center justify-between overflow-hidden px-4 sm:px-8 md:px-16 py-8 md:py-16 relative w-full max-w-[1440px] mx-auto gap-8 md:gap-0">
@@ -45,7 +49,13 @@ export default function Footer() {
       </div>
       <div className="bg-black flex flex-col items-center justify-center overflow-hidden px-4 sm:px-16 py-6 relative w-full gap-8">
         <div className="flex items-center justify-center w-full">
-          <div className="aspect-[200/17.637] relative w-[150px] sm:w-[200px] text-[#f6ebd7]">
+          <a 
+            href="https://www.knokke-heist.be/" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="aspect-[200/17.637] relative w-[150px] sm:w-[200px] text-[#f6ebd7] hover:opacity-80 transition-opacity"
+            aria-label="Ga naar website van Knokke-Heist"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 200 18"
@@ -65,18 +75,29 @@ export default function Footer() {
               <path d="M180.811 7.05468C178.413 6.13757 177.707 5.5732 177.707 4.65609C177.707 3.80953 178.483 3.17461 179.471 3.17461C180.459 3.17461 181.376 3.80953 181.799 5.00882L181.869 5.14992L184.832 3.3157L184.762 3.24515C183.704 1.12875 181.87 0.070551 179.541 0.070551C176.367 0.070551 174.109 2.04586 174.109 4.79718C174.109 7.26632 175.309 8.60671 178.977 10.0882C181.235 11.0053 182.011 11.6402 182.011 12.4868C182.011 13.6861 181.093 14.4621 179.612 14.4621C177.778 14.4621 176.649 13.4039 176.437 11.5697V11.4286L172.91 12.3457V12.4162C173.404 15.5203 176.085 17.6367 179.541 17.6367C183.069 17.6367 185.538 15.3792 185.538 12.2046C185.608 9.73545 184.409 8.46561 180.811 7.05468Z" fill="currentColor" />
               <path d="M186.314 0.423285V3.66843H191.323V17.284H194.921V3.66843H200V0.423285H186.314Z" fill="currentColor" />
             </svg>
-          </div>
+          </a>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <a href="#" className="font-body font-normal leading-[1.5] text-[#f6ebd7] text-[12px] underline">
+          <a 
+            href="https://www.knokke-heist.be/gemeente-en-bestuur/over-knokke-heist/factuurvoorwaarden/privacybeleid-gemeente-knokke-heist" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body font-normal leading-[1.5] text-[#f6ebd7] text-[12px] underline hover:text-white transition-colors"
+            aria-label="Privacybeleid van Gemeente Knokke-Heist (opent in nieuw tabblad)"
+          >
             Privacybeleid
           </a>
-          <a href="#" className="font-body font-normal leading-[1.5] text-[#f6ebd7] text-[12px] underline">
+          <a 
+            href="/cookieverklaring" 
+            className="font-body font-normal leading-[1.5] text-[#f6ebd7] text-[12px] underline hover:text-white transition-colors"
+            aria-label="Cookieverklaring van deze website"
+          >
             Cookieverklaring
           </a>
           <button
             type="button"
-            className="border border-[#f6ebd7] flex items-center justify-center px-4 py-2 rounded"
+            onClick={showPreferences}
+            className="border border-[#f6ebd7] flex items-center justify-center px-4 py-2 rounded hover:bg-[#f6ebd7]/10 transition-colors"
           >
             <p className="font-body font-normal leading-[1.5] text-[#f6ebd7] text-[12px]">
               Cookievoorkeuren

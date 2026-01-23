@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { ChevronDown } from 'lucide-react'
-const imgDivider = "https://www.figma.com/api/mcp/asset/086ed33b-9d15-4f89-aea2-4b07701c11e6"
 
 const faqItems = [
   {
@@ -90,8 +88,19 @@ export default function Carnavalstermen() {
               )
             })}
           </div>
-          <div className="absolute bottom-0 h-0 left-[-96px] right-[-96px]">
-            <Image src={imgDivider} alt="" fill className="object-contain" unoptimized />
+          <div className="absolute bottom-0 left-[-96px] right-[-96px] h-8 md:h-12 w-full">
+            <svg
+              viewBox="0 0 1200 120"
+              preserveAspectRatio="none"
+              className="w-full h-full"
+              aria-hidden="true"
+            >
+              <path
+                d="M0,60 Q300,0 600,60 T1200,60 L1200,120 L0,120 Z"
+                fill="currentColor"
+                className="text-licht-groen"
+              />
+            </svg>
           </div>
         </div>
       </div>

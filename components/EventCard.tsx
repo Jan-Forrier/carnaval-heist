@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { MapPin } from 'lucide-react'
 
-const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
+// Fallback image for event cards
+const defaultEventImage = "/images/fotogalerij/DSC08081.jpg"
 
 interface EventCardProps {
   time: string
@@ -13,7 +14,7 @@ interface EventCardProps {
 }
 
 export default function EventCard({ time, title, description, location, locationLink, image }: EventCardProps) {
-  const imageSrc = image || imgDsc080813
+  const imageSrc = image || defaultEventImage
   
   return (
     <div className="bg-licht-groen flex flex-col items-start px-4 sm:px-8 md:px-16 py-6 md:py-8 relative rounded-lg w-full gap-4">

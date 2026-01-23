@@ -157,17 +157,18 @@ export default function Fotogalerij() {
         </div>
 
         {/* Dot Indicators */}
-        <div className="flex justify-center items-center gap-2 mt-6">
+        <div className="flex justify-center items-center gap-3 mt-6">
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all ${
+              className={`min-h-[44px] min-w-[44px] rounded-full transition-all flex items-center justify-center ${
                 index === currentIndex 
                   ? 'w-8 bg-black' 
                   : 'w-2 bg-black/30 hover:bg-black/50'
               }`}
-              aria-label={`Ga naar slide ${index + 1}`}
+              aria-label={`Ga naar slide ${index + 1} van ${totalSlides}`}
+              aria-current={index === currentIndex ? 'true' : 'false'}
             />
           ))}
         </div>

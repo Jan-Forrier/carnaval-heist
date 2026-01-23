@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import { Baby } from 'lucide-react'
 
-const imgDsc080813 = "https://www.figma.com/api/mcp/asset/d55918f0-92b7-41f5-b482-569cf863604c"
+// Default image for children section cards
+const defaultChildrenImage = "/images/fotogalerij/kindercarnavalbal.jpg"
 
 export default function Kinderen() {
   return (
@@ -29,7 +30,7 @@ export default function Kinderen() {
             {/* Zaterdag Card */}
             <div className="bg-licht-groen flex flex-1 flex-col items-start relative rounded-lg self-stretch">
               <div className="aspect-[4096/2731] relative rounded-tl-lg rounded-tr-lg shrink-0 w-full overflow-hidden">
-                <Image src={imgDsc080813} alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
+                <Image src={defaultChildrenImage} alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
               </div>
               <div className="flex flex-col gap-0 items-start p-4 sm:p-6 md:p-8 relative shrink-0 w-full">
                 <div className="flex flex-col gap-3 items-start leading-normal relative text-black w-full">
@@ -62,7 +63,7 @@ export default function Kinderen() {
             {/* Zondag Card */}
             <div className="bg-licht-groen flex flex-1 flex-col items-start relative rounded-lg self-stretch">
               <div className="aspect-[4096/2731] relative rounded-tl-lg rounded-tr-lg shrink-0 w-full overflow-hidden">
-                <Image src={imgDsc080813} alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
+                <Image src="/images/fotogalerij/zondagstoet.jpg" alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
               </div>
               <div className="flex flex-col gap-0 items-start p-8 relative shrink-0 w-full">
                 <div className="flex flex-col font-body font-semibold gap-3 items-start leading-normal relative text-black w-full">
@@ -89,7 +90,7 @@ export default function Kinderen() {
             {/* Dinsdag Card */}
             <div className="bg-licht-groen flex flex-1 flex-col items-start relative rounded-lg self-stretch">
               <div className="aspect-[4096/2731] relative rounded-tl-lg rounded-tr-lg shrink-0 w-full overflow-hidden">
-                <Image src={imgDsc080813} alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
+                <Image src="/images/fotogalerij/vette dinsdag.jpg" alt="" fill className="object-cover rounded-tl-lg rounded-tr-lg" unoptimized style={{ objectFit: 'cover' }} />
               </div>
               <div className="flex flex-col gap-0 items-start p-8 relative shrink-0 w-full">
                 <div className="flex flex-col font-body font-semibold gap-3 items-start leading-normal relative text-black w-full">

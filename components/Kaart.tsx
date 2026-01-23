@@ -28,6 +28,7 @@ export default function Kaart() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
+                title="Google Maps kaart met alle belangrijke locaties en het parcours van de stoeten in Heist"
               />
               {!isInteractive && (
                 <button
