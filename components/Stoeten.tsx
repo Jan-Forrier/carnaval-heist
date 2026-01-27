@@ -7,7 +7,8 @@ interface Stoet {
   volgorde: number | null
   naamVereniging: string
   thema: string
-  rangschikking: number | null
+  rangschikkingZondag: number | null
+  rangschikkingDinsdag: number | null
 }
 
 export default function Stoeten() {
@@ -88,14 +89,26 @@ export default function Stoeten() {
     }
   }, [])
 
-  // Separate stoeten with and without rangschikking
-  const stoetenMetRangschikking = stoeten.filter(s => s.rangschikking !== null)
-  const stoetenZonderRangschikking = stoeten.filter(s => s.rangschikking === null)
+  // Separate stoeten with and without any rangschikking
+  const stoetenMetRangschikking = stoeten.filter(
+    s => s.rangschikkingZondag !== null || s.rangschikkingDinsdag !== null
+  )
+  const stoetenZonderRangschikking = stoeten.filter(
+    s => s.rangschikkingZondag === null && s.rangschikkingDinsdag === null
+  )
 
-  // Sort stoeten with rangschikking by rangschikking
-  const sortedStoetenMetRangschikking = [...stoetenMetRangschikking].sort((a, b) => {
-    if (a.rangschikking === null || b.rangschikking === null) return 0
-    return a.rangschikking - b.rangschikking
+  // Separate stoeten with Zondag rangschikking
+  const stoetenMetRangschikkingZondag = stoeten.filter(s => s.rangschikkingZondag !== null)
+  const sortedStoetenMetRangschikkingZondag = [...stoetenMetRangschikkingZondag].sort((a, b) => {
+    if (a.rangschikkingZondag === null || b.rangschikkingZondag === null) return 0
+    return a.rangschikkingZondag - b.rangschikkingZondag
+  })
+
+  // Separate stoeten with Dinsdag rangschikking
+  const stoetenMetRangschikkingDinsdag = stoeten.filter(s => s.rangschikkingDinsdag !== null)
+  const sortedStoetenMetRangschikkingDinsdag = [...stoetenMetRangschikkingDinsdag].sort((a, b) => {
+    if (a.rangschikkingDinsdag === null || b.rangschikkingDinsdag === null) return 0
+    return a.rangschikkingDinsdag - b.rangschikkingDinsdag
   })
 
   return (
@@ -125,7 +138,7 @@ export default function Stoeten() {
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-red-600">{error}</p>
               </div>
-            ) : stoetenZonderRangschikking.length === 0 && sortedStoetenMetRangschikking.length === 0 ? (
+            ) : stoetenZonderRangschikking.length === 0 && sortedStoetenMetRangschikkingZondag.length === 0 && sortedStoetenMetRangschikkingDinsdag.length === 0 ? (
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-black">Geen stoeten gevonden.</p>
               </div>
@@ -167,12 +180,12 @@ export default function Stoeten() {
                   </div>
                 )}
 
-                {/* Uitslag Rangschikking Stoeten */}
-                {sortedStoetenMetRangschikking.length > 0 && (
+                {/* Uitslag Rangschikking Stoeten - Zondag */}
+                {sortedStoetenMetRangschikkingZondag.length > 0 && (
                   <div className="flex flex-col gap-8 items-start relative w-full mt-8">
                     <div className="flex flex-col gap-4 items-start justify-center relative text-black text-center w-full">
                       <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase w-full">
-                        Uitslag rangschikking stoeten
+                        Uitslag rangschikking stoeten - Zondag
                       </h2>
                     </div>
                     <div className="w-full overflow-x-auto">
@@ -191,10 +204,53 @@ export default function Stoeten() {
                           </tr>
                         </thead>
                         <tbody>
-                          {sortedStoetenMetRangschikking.map((stoet) => (
+                          {sortedStoetenMetRangschikkingZondag.map((stoet) => (
                             <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
                               <td className="py-4 px-4 text-black font-body text-fluid-body">
-                                {stoet.rangschikking !== null ? stoet.rangschikking : '-'}
+                                {stoet.rangschikkingZondag !== null ? stoet.rangschikkingZondag : '-'}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.naamVereniging}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.thema || '-'}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* Uitslag Rangschikking Stoeten - Dinsdag */}
+                {sortedStoetenMetRangschikkingDinsdag.length > 0 && (
+                  <div className="flex flex-col gap-8 items-start relative w-full mt-8">
+                    <div className="flex flex-col gap-4 items-start justify-center relative text-black text-center w-full">
+                      <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase w-full">
+                        Uitslag rangschikking stoeten - Dinsdag
+                      </h2>
+                    </div>
+                    <div className="w-full overflow-x-auto">
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-black">
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Rangschikking
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Naam Vereniging
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Thema
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {sortedStoetenMetRangschikkingDinsdag.map((stoet) => (
+                            <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.rangschikkingDinsdag !== null ? stoet.rangschikkingDinsdag : '-'}
                               </td>
                               <td className="py-4 px-4 text-black font-body text-fluid-body">
                                 {stoet.naamVereniging}

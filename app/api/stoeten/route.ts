@@ -38,7 +38,8 @@ export async function GET() {
     // - field_7005342 -> "Volgorde" (number) - note: likely capitalized
     // - field_7005343 -> "Naam vereniging" (string) - note: with space
     // - field_7005438 -> "Thema" (string) - note: likely capitalized
-    // - field_7005440 -> "Rangschikking" (number) - note: likely capitalized
+    // - field_7005440 -> "Rangschikking Zondag" (number) - note: likely capitalized
+    // - field_7007073 -> "Rangschikking Dinsdag" (number) - note: likely capitalized
     const rows: any[] = data.results || []
     
     // Debug: log first row to see actual field names
@@ -97,44 +98,53 @@ export async function GET() {
           'thema'
         ) || ''
         
-        const rangschikking = getField(
+        const rangschikkingZondag = getField(
           row, 
-          'Rangschikking',  // Most likely with capital R
+          'Rangschikking Zondag',  // Most likely with capital R and space
+          'Rangschikking zondag',
+          'rangschikking_zondag',
+          'rangschikkingZondag',
+          'Rangschikking',  // Fallback to old field name
           'rangschikking'
         )
         
-        // Convert volgorde to number if it's a string
-        let volgordeNum: number | null = null
-        if (volgorde !== null) {
-          if (typeof volgorde === 'number') {
-            volgordeNum = volgorde
-          } else if (typeof volgorde === 'string' && volgorde.trim() !== '') {
-            const parsed = parseInt(volgorde, 10)
+        const rangschikkingDinsdag = getField(
+          row, 
+          'Rangschikking Dinsdag',  // Most likely with capital R and space
+          'Rangschikking dinsdag',
+          'rangschikking_dinsdag',
+          'rangschikkingDinsdag'
+        )
+        
+        // Helper function to convert to number
+        const toNumber = (value: any): number | null => {
+          if (value === null || value === undefined || value === '') {
+            return null
+          }
+          if (typeof value === 'number') {
+            return value
+          }
+          if (typeof value === 'string' && value.trim() !== '') {
+            const parsed = parseInt(value, 10)
             if (!isNaN(parsed)) {
-              volgordeNum = parsed
+              return parsed
             }
           }
+          return null
         }
         
-        // Convert rangschikking to number if it's a string
-        let rangschikkingNum: number | null = null
-        if (rangschikking !== null) {
-          if (typeof rangschikking === 'number') {
-            rangschikkingNum = rangschikking
-          } else if (typeof rangschikking === 'string' && rangschikking.trim() !== '') {
-            const parsed = parseInt(rangschikking, 10)
-            if (!isNaN(parsed)) {
-              rangschikkingNum = parsed
-            }
-          }
-        }
+        // Convert volgorde to number if it's a string
+        const volgordeNum = toNumber(volgorde)
+        const rangschikkingZondagNum = toNumber(rangschikkingZondag)
+        const rangschikkingDinsdagNum = toNumber(rangschikkingDinsdag)
         
         return {
           id: row.id,
           volgorde: volgordeNum,
           naamVereniging: String(naamVereniging).trim(),
           thema: String(thema).trim(),
-          rangschikking: rangschikkingNum,
+          rangschikkingZondag: rangschikkingZondagNum,
+          rangschikkingDinsdag: rangschikkingDinsdagNum,
         }
       })
       .filter(stoet => stoet.naamVereniging !== '') // Final filter to ensure we have a name
