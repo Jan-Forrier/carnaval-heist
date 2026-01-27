@@ -89,13 +89,8 @@ export default function Stoeten() {
     }
   }, [])
 
-  // Separate stoeten with and without any rangschikking
-  const stoetenMetRangschikking = stoeten.filter(
-    s => s.rangschikkingZondag !== null || s.rangschikkingDinsdag !== null
-  )
-  const stoetenZonderRangschikking = stoeten.filter(
-    s => s.rangschikkingZondag === null && s.rangschikkingDinsdag === null
-  )
+  // Volgorde stoeten shows ALL stoeten, regardless of rangschikking
+  // Rangschikking tables only show stoeten with that specific rangschikking
 
   // Separate stoeten with Zondag rangschikking
   const stoetenMetRangschikkingZondag = stoeten.filter(s => s.rangschikkingZondag !== null)
@@ -138,18 +133,18 @@ export default function Stoeten() {
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-red-600">{error}</p>
               </div>
-            ) : stoetenZonderRangschikking.length === 0 && sortedStoetenMetRangschikkingZondag.length === 0 && sortedStoetenMetRangschikkingDinsdag.length === 0 ? (
+            ) : stoeten.length === 0 && sortedStoetenMetRangschikkingZondag.length === 0 && sortedStoetenMetRangschikkingDinsdag.length === 0 ? (
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-black">Geen stoeten gevonden.</p>
               </div>
             ) : (
               <>
-                {/* Table for stoeten without rangschikking */}
-                {stoetenZonderRangschikking.length > 0 && (
+                {/* Table for all stoeten (volgorde) */}
+                {stoeten.length > 0 && (
                   <>
                     {/* Mobile: Stacked cards */}
                     <div className="w-full md:hidden flex flex-col gap-4">
-                      {stoetenZonderRangschikking.map((stoet) => (
+                      {stoeten.map((stoet) => (
                         <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
                           <div className="flex flex-col gap-2">
                             <div className="flex items-center gap-2">
@@ -189,7 +184,7 @@ export default function Stoeten() {
                           </tr>
                         </thead>
                         <tbody>
-                          {stoetenZonderRangschikking.map((stoet) => (
+                          {stoeten.map((stoet) => (
                             <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
                               <td className="py-4 px-4 text-black font-body text-fluid-body">
                                 {stoet.volgorde !== null ? stoet.volgorde : '-'}
