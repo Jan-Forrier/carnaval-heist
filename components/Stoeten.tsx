@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface Stoet {
   id: number
@@ -14,25 +14,78 @@ export default function Stoeten() {
   const [stoeten, setStoeten] = useState<Stoet[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
+  const fetchStoeten = async (showLoading = false) => {
+    try {
+      if (showLoading) {
+        setIsRefreshing(true)
+      }
+      
+      // Add cache-busting parameter to ensure fresh data
+      const response = await fetch(`/api/stoeten?t=${Date.now()}`, {
+        cache: 'no-store',
+      })
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch stoeten data')
+      }
+      
+      const data = await response.json()
+      setStoeten(data.stoeten || [])
+      setError(null)
+    } catch (err) {
+      // Only show error on initial load, not on refresh
+      if (showLoading) {
+        setError(err instanceof Error ? err.message : 'Er is een fout opgetreden')
+      }
+      console.error('Error fetching stoeten:', err)
+    } finally {
+      setLoading(false)
+      setIsRefreshing(false)
+    }
+  }
 
   useEffect(() => {
-    const fetchStoeten = async () => {
-      try {
-        const response = await fetch('/api/stoeten')
-        if (!response.ok) {
-          throw new Error('Failed to fetch stoeten data')
+    // Initial fetch
+    fetchStoeten(true)
+
+    // Set up automatic refresh every 30 seconds
+    // Only refresh if page is visible (not in background tab)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Refresh immediately when tab becomes visible
+        fetchStoeten(false)
+        // Then continue with interval
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current)
         }
-        const data = await response.json()
-        setStoeten(data.stoeten || [])
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Er is een fout opgetreden')
-        console.error('Error fetching stoeten:', err)
-      } finally {
-        setLoading(false)
+        intervalRef.current = setInterval(() => {
+          if (document.visibilityState === 'visible') {
+            fetchStoeten(false)
+          }
+        }, 30000) // Refresh every 30 seconds
       }
     }
 
-    fetchStoeten()
+    // Start interval for automatic refresh
+    intervalRef.current = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        fetchStoeten(false)
+      }
+    }, 30000) // Refresh every 30 seconds
+
+    // Listen for visibility changes
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    // Cleanup
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
   }, [])
 
   // Separate stoeten with and without rangschikking
@@ -52,9 +105,16 @@ export default function Stoeten() {
           {/* Volgorde Stoeten */}
           <div className="flex flex-col gap-8 items-start relative w-full">
             <div className="flex flex-col gap-4 items-start justify-center relative text-black text-center w-full">
-              <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase w-full">
-                Volgorde stoeten
-              </h2>
+              <div className="flex items-center justify-center gap-3 w-full">
+                <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase">
+                  Volgorde stoeten
+                </h2>
+                {isRefreshing && (
+                  <span className="text-sm text-gray-500 font-body" aria-label="Data wordt ververst">
+                    ⟳
+                  </span>
+                )}
+              </div>
             </div>
 
             {loading ? (

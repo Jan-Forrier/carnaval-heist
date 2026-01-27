@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server'
 
+// Disable caching for this route to ensure fresh data
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function GET() {
   const token = process.env.BASEROW_API_TOKEN
   
@@ -19,7 +23,7 @@ export async function GET() {
         'Authorization': `Token ${token}`,
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
+      cache: 'no-store', // Always fetch fresh data from Baserow
     })
 
     if (!response.ok) {
