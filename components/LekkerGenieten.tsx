@@ -27,7 +27,7 @@ export default function LekkerGenieten() {
             </p>
           </div>
           <div className="aspect-[600/400] relative shrink-0 w-full md:w-[600px] overflow-hidden rounded-lg">
-            <Image src="/images/fotogalerij/vette dinsdag.jpg" alt="" fill className="object-cover rounded-lg" unoptimized style={{ objectFit: 'cover' }} />
+            <Image src="/images/fotogalerij/DSC_2425.jpg" alt="" fill className="object-cover rounded-lg" unoptimized style={{ objectFit: 'cover' }} />
           </div>
         </div>
       </div>

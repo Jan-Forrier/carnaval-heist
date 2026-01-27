@@ -84,6 +84,7 @@ export default function Programma() {
                 }
                 location="centrum van Heist"
                 locationLink="https://www.google.com/maps/d/u/1/edit?hl=nl&mid=10d99canM10G_xwi2DzQYYSx7wQi5pho&ll=51.33686204167316%2C3.2393624027767043&z=16"
+                image="/images/fotogalerij/zondagstoet.jpg"
               />
               <EventCard
                 time="19.30 uur"
@@ -147,6 +148,7 @@ export default function Programma() {
                 description="Sinds 1928 is er een knotsgekke voetbalwedstrijd tussen de vissers en de plakkers. Het Hof Der Prinsen deelt langs de zijlijn vissoep uit, alle giften zijn voor een goed doel."
                 location="Voetbalstadion De Taeye"
                 locationLink="https://maps.app.goo.gl/aeHuR4GKLzwH32LM8"
+                image="/images/fotogalerij/DSC04761-Enhanced-NR.jpg"
               />
               <EventCard
                 time="18.30 uur"
@@ -154,6 +156,7 @@ export default function Programma() {
                 description="Op het voorplein van zaal Ravelingen gooit prins(es) carnaval babelutten en snoepgoed voor de kinderen. De gouden babelutte geeft recht op een verrassingspakket."
                 location="Stationsplein"
                 locationLink="https://maps.app.goo.gl/fdEg7kiVHMa4h9pR6"
+                image="/images/fotogalerij/DSC04755.jpg"
               />
               <EventCard
                 time="18.45 uur"
@@ -200,6 +203,7 @@ export default function Programma() {
                 title="Kazakken met haring"
                 description=""
                 location="Heistse cafés"
+                image="/images/fotogalerij/DSC04117.jpg"
               />
             </div>
           </div>
@@ -216,6 +220,7 @@ export default function Programma() {
                 description="De kleinste en fijnste stoet van het land bestaat uit een 25-tal minipraalwagens die te bewonderen zijn in de etalages van de Heistse winkels. Heb je zin in wat extra spelplezier tijdens de wandeling; dan haal je een flyer op aan het startpunt aan belevingscentrum HEY. Het is een verrassende wandeling van 3,5km met speelse opdrachten."
                 location="Belevingscentrum HEY"
                 locationLink="https://maps.app.goo.gl/o79SKdSjnFpeKidB9"
+                image="/images/fotogalerij/Carnaval-94.jpg"
               />
               <EventCard
                 time="dagelijks vanaf 14 uur"
