@@ -121,6 +121,7 @@ export default function Praktisch() {
                       <p className="font-body font-normal text-fluid-body text-[#281d1b] w-full">
                         Tijdens de 4-daagse carnaval is er een preventiepunt van de politie op de parking bij het museum Hey / toerismekantoor Heist. Tijdens de stoeten vind je er ook een EHBO-post. Let op je oren: praalwagens bereiken gemiddeld 100 dB en cafés zijn soms luid. Gebruik oordoppen of een koptelefoon voor kinderen. Gratis oordopjes zijn beschikbaar in zaal Ravelingen op het Stationsplein.
                       </p>
+                      <p>Gratis oordopjes zijn beschikbaar in zaal Ravelingen op het Stationsplein. <strong>Of scoor gratis oordopjes bij de stewards en stewardessen van Carnaval Earlines die vooraan in de stoet lopen.</strong></p>
                     </div>
                   </div>
                 </div>
