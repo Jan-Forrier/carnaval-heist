@@ -146,38 +146,66 @@ export default function Stoeten() {
               <>
                 {/* Table for stoeten without rangschikking */}
                 {stoetenZonderRangschikking.length > 0 && (
-                  <div className="w-full overflow-x-auto">
-                    <table className="w-full border-collapse">
-                      <thead>
-                        <tr className="border-b-2 border-black">
-                          <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
-                            Volgorde
-                          </th>
-                          <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
-                            Naam Vereniging
-                          </th>
-                          <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
-                            Thema
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {stoetenZonderRangschikking.map((stoet) => (
-                          <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
-                            <td className="py-4 px-4 text-black font-body text-fluid-body">
-                              {stoet.volgorde !== null ? stoet.volgorde : '-'}
-                            </td>
-                            <td className="py-4 px-4 text-black font-body text-fluid-body">
-                              {stoet.naamVereniging}
-                            </td>
-                            <td className="py-4 px-4 text-black font-body text-fluid-body">
-                              {stoet.thema || '-'}
-                            </td>
+                  <>
+                    {/* Mobile: Stacked cards */}
+                    <div className="w-full md:hidden flex flex-col gap-4">
+                      {stoetenZonderRangschikking.map((stoet) => (
+                        <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-body font-semibold text-black text-fluid-body">Volgorde:</span>
+                              <span className="font-body text-black text-fluid-body">
+                                {stoet.volgorde !== null ? stoet.volgorde : '-'}
+                              </span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <span className="font-body font-semibold text-black text-fluid-body">Naam Vereniging:</span>
+                              <span className="font-body text-black text-fluid-body">{stoet.naamVereniging}</span>
+                            </div>
+                            {stoet.thema && (
+                              <div className="flex flex-col gap-1">
+                                <span className="font-body font-semibold text-black text-fluid-body">Thema:</span>
+                                <span className="font-body text-black text-fluid-body">{stoet.thema}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Desktop: Table */}
+                    <div className="hidden md:block w-full overflow-x-auto">
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-black">
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Volgorde
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Naam Vereniging
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Thema
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {stoetenZonderRangschikking.map((stoet) => (
+                            <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.volgorde !== null ? stoet.volgorde : '-'}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.naamVereniging}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.thema || '-'}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
                 )}
 
                 {/* Uitslag Rangschikking Stoeten - Zondag */}
@@ -188,7 +216,33 @@ export default function Stoeten() {
                         Uitslag rangschikking stoeten - Zondag
                       </h2>
                     </div>
-                    <div className="w-full overflow-x-auto">
+                    {/* Mobile: Stacked cards */}
+                    <div className="w-full md:hidden flex flex-col gap-4">
+                      {sortedStoetenMetRangschikkingZondag.map((stoet) => (
+                        <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-body font-semibold text-black text-fluid-body">Rangschikking:</span>
+                              <span className="font-body text-black text-fluid-body">
+                                {stoet.rangschikkingZondag !== null ? stoet.rangschikkingZondag : '-'}
+                              </span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <span className="font-body font-semibold text-black text-fluid-body">Naam Vereniging:</span>
+                              <span className="font-body text-black text-fluid-body">{stoet.naamVereniging}</span>
+                            </div>
+                            {stoet.thema && (
+                              <div className="flex flex-col gap-1">
+                                <span className="font-body font-semibold text-black text-fluid-body">Thema:</span>
+                                <span className="font-body text-black text-fluid-body">{stoet.thema}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Desktop: Table */}
+                    <div className="hidden md:block w-full overflow-x-auto">
                       <table className="w-full border-collapse">
                         <thead>
                           <tr className="border-b-2 border-black">
@@ -231,7 +285,33 @@ export default function Stoeten() {
                         Uitslag rangschikking stoeten - Dinsdag
                       </h2>
                     </div>
-                    <div className="w-full overflow-x-auto">
+                    {/* Mobile: Stacked cards */}
+                    <div className="w-full md:hidden flex flex-col gap-4">
+                      {sortedStoetenMetRangschikkingDinsdag.map((stoet) => (
+                        <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-body font-semibold text-black text-fluid-body">Rangschikking:</span>
+                              <span className="font-body text-black text-fluid-body">
+                                {stoet.rangschikkingDinsdag !== null ? stoet.rangschikkingDinsdag : '-'}
+                              </span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <span className="font-body font-semibold text-black text-fluid-body">Naam Vereniging:</span>
+                              <span className="font-body text-black text-fluid-body">{stoet.naamVereniging}</span>
+                            </div>
+                            {stoet.thema && (
+                              <div className="flex flex-col gap-1">
+                                <span className="font-body font-semibold text-black text-fluid-body">Thema:</span>
+                                <span className="font-body text-black text-fluid-body">{stoet.thema}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Desktop: Table */}
+                    <div className="hidden md:block w-full overflow-x-auto">
                       <table className="w-full border-collapse">
                         <thead>
                           <tr className="border-b-2 border-black">
