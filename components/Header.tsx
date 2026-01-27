@@ -104,6 +104,22 @@ export default function Header() {
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Programma</p>
           </Link>
           <Link 
+            href="/#stoeten"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('stoeten')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
+            className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
+            aria-label="Ga naar Stoeten sectie"
+          >
+            <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Stoeten</p>
+          </Link>
+          <Link 
             href="/#praktisch"
             onClick={(e) => {
               if (isHomePage) {
@@ -231,6 +247,23 @@ export default function Header() {
             aria-label="Ga naar Programma sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Programma</p>
+          </Link>
+          <Link
+            href="/#stoeten"
+            onClick={(e) => {
+              closeMenu()
+              if (isHomePage) {
+                e.preventDefault()
+                const element = document.getElementById('stoeten')
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }
+              }
+            }}
+            className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
+            aria-label="Ga naar Stoeten sectie"
+          >
+            <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Stoeten</p>
           </Link>
           <Link
             href="/#praktisch"

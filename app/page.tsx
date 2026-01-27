@@ -11,6 +11,7 @@ import LekkerGenieten from '@/components/LekkerGenieten'
 import Carnavalstermen from '@/components/Carnavalstermen'
 import Deelnemen from '@/components/Deelnemen'
 import Fotogalerij from '@/components/Fotogalerij'
+import Stoeten from '@/components/Stoeten'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -75,6 +76,7 @@ export default function Home() {
           <Hero />
           <Programma />
           <Kaart />
+          <Stoeten />
           <Praktisch />
           <Kinderen />
           <LekkerGenieten />
