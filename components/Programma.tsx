@@ -38,7 +38,7 @@ export default function Programma() {
               <EventCard
                 time="17 - 3 uur"
                 title="Feestavond"
-                description="Kinderen kunnen met hun ouders gratis genieten van een verkleed carnavalsfeest."
+                description="Thema-avond in diverse cafés en feesttenten."
                 location="diverse cafés en feesttenten"
                 image="/images/fotogalerij/feestavond.jpg"
               />
@@ -111,7 +111,7 @@ export default function Programma() {
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
-                time="vanaf 16 uur"
+                time="16 - 3 uur"
                 title="Sprotjesavond"
                 description={
                   <>

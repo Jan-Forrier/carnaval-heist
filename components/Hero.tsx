@@ -56,7 +56,7 @@ export default function Hero() {
             Heist viert Carnaval
           </h1>
           <p className="font-body font-normal text-fluid-body w-full">
-            Heist is het kloppende carnavalscentrum van Knokke-Heist. Vier dagen lang wisselen kleurrijke stoeten, originele kostuums en sfeervolle evenementen elkaar in sneltempo af. De grote zondagstoet en de verlichte dinsdagavondstoet zijn de absolute hoogtepunten, waar talloze vrijwilligers hun passie tonen. Ook naast de stoeten bruist Heist in cafés en feestlocaties tot in de vroege uurtjes. Carnaval in Heist prikkel je zintuigen van begin tot eind.
+            Heist is het kloppende carnavalscentrum van Knokke-Heist. Vier dagen lang wisselen kleurrijke stoeten, originele kostuums en sfeervolle evenementen elkaar in sneltempo af. De grote zondagstoet en de verlichte dinsdagavondstoet zijn de absolute hoogtepunten, waar talloze vrijwilligers hun passie tonen. Ook naast de stoeten bruist Heist in cafés en feestlocaties tot in de vroege uurtjes. Carnaval in Heist prikkelt je zintuigen van begin tot eind.
           </p>
         </div>
         <div 
