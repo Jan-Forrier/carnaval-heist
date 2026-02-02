@@ -157,7 +157,7 @@ export default function Fotogalerij() {
         </div>
 
         {/* Dot Indicators */}
-        <div className="flex justify-center items-center gap-3 mt-6 w-full">
+        <div className="hidden md:flex justify-center items-center gap-3 mt-6 w-full">
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
