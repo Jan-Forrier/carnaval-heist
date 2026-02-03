@@ -63,7 +63,12 @@ export default function Deelnemen() {
                   </div>
                 </div>
                 <div className="flex gap-4 items-center justify-center relative shrink-0">
-                  <a href="https://www.knokke-heist.be/sites/default/files/paragraph-file/TPVO2025.pdf" target="_blank" rel="noopener noreferrer" className="font-body font-normal leading-normal text-[16px] text-black underline">
+                  <a
+                    href="/files/tijdelijke-politieverordening-veiligheid-carnavalsperiode-2026.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body font-normal leading-normal text-[16px] text-black underline"
+                  >
                     Tijdelijke Politieverordening
                   </a>
                   <div className="relative w-4 h-4 shrink-0 aspect-square text-[#000000]">
