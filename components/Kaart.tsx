@@ -6,7 +6,7 @@ export default function Kaart() {
   const [isInteractive, setIsInteractive] = useState(false)
 
   return (
-    <section className="bg-licht-geel flex flex-col items-start px-0 py-16 sm:py-24 md:py-32 relative w-full">
+    <section id="kaart" className="bg-licht-geel flex flex-col items-start px-0 py-16 sm:py-24 md:py-32 relative w-full">
       <div className="flex gap-0 items-start overflow-hidden px-4 sm:px-8 md:px-16 py-0 relative w-full max-w-[1440px] mx-auto">
         <div className="flex flex-1 flex-col gap-8 md:gap-16 items-start relative w-full">
           <div className="flex flex-col gap-4 items-start relative text-black text-center w-full">

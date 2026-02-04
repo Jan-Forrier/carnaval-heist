@@ -104,18 +104,18 @@ export default function Header() {
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Programma</p>
           </Link>
           <Link 
-            href="/#stoeten"
+            href="/#kaart"
             onClick={(e) => {
               if (isHomePage) {
                 e.preventDefault()
-                const element = document.getElementById('stoeten')
+                const element = document.getElementById('kaart')
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }
               }
             }}
             className="nav-link flex h-full items-center py-2 relative focus:outline-none focus-visible:after:scale-x-100"
-            aria-label="Ga naar Stoeten sectie"
+            aria-label="Ga naar Kaart sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px] text-center">Stoeten</p>
           </Link>
@@ -249,19 +249,19 @@ export default function Header() {
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Programma</p>
           </Link>
           <Link
-            href="/#stoeten"
+            href="/#kaart"
             onClick={(e) => {
               closeMenu()
               if (isHomePage) {
                 e.preventDefault()
-                const element = document.getElementById('stoeten')
+                const element = document.getElementById('kaart')
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                 }
               }
             }}
             className="py-4 border-b border-[rgba(73,91,110,0.2)] hover:bg-licht-geel transition-colors focus:outline-none focus:ring-2 focus:ring-[#28271b] focus:ring-inset"
-            aria-label="Ga naar Stoeten sectie"
+            aria-label="Ga naar Kaart sectie"
           >
             <p className="font-body font-normal leading-normal text-[#28271b] text-[20px]">Stoeten</p>
           </Link>

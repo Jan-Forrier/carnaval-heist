@@ -87,6 +87,24 @@ export default function Carnavalstermen() {
                 </div>
               )
             })}
+            {/* CTA onder de carnavalstermen */}
+            <div className="mt-10 bg-white/90 rounded-xl shadow-md px-6 py-6 sm:px-8 sm:py-8 w-full max-w-2xl">
+              <h3 className="font-display text-[22px] sm:text-[26px] text-[#1b2128] mb-3 text-left">
+                Laat Carnaval Heist schitteren als immaterieel erfgoed!
+              </h3>
+              <p className="font-body text-[16px] text-[#1b2128] mb-4">
+                Deel je stem en ervaringen zodat ons carnavalsfeest nog sterker verankerd wordt voor de toekomst.
+              </p>
+              <a
+                href="https://www.knokke-heist.be/carnaval-knokke-heist/formulier-carnaval-immaterieel-erfgoed"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#1b2128] text-white font-body font-semibold text-[16px] hover:bg-black transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 focus:ring-offset-licht-groen"
+                aria-label="Vul de korte enquête in over Carnaval als immaterieel erfgoed (opent in nieuw venster)"
+              >
+                Vul de korte enquête in
+              </a>
+            </div>
           </div>
           <div className="absolute bottom-0 left-[-96px] right-[-96px] h-8 md:h-12 w-full">
             <svg
