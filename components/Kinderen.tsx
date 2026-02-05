@@ -113,6 +113,19 @@ export default function Kinderen() {
               </div>
             </div>
           </div>
+
+          {/* Vimeo video - Klasparade 2026 */}
+          <div className="w-full mt-10">
+            <div className="relative w-full aspect-video rounded-lg overflow-hidden shadow-md bg-black">
+              <iframe
+                src="https://player.vimeo.com/video/1161817075"
+                title="Klasparade 2026"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
