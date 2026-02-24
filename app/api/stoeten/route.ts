@@ -34,12 +34,13 @@ export async function GET() {
     
     // Transform the data to ensure we have the right fields
     // With user_field_names=true, Baserow returns fields with their friendly names
-    // Field mappings:
-    // - field_7005342 -> "Volgorde" (number) - note: likely capitalized
-    // - field_7005343 -> "Naam vereniging" (string) - note: with space
-    // - field_7005438 -> "Thema" (string) - note: likely capitalized
-    // - field_7005440 -> "Rangschikking Zondag" (number) - note: likely capitalized
-    // - field_7007073 -> "Rangschikking Dinsdag" (number) - note: likely capitalized
+    // Field mappings (current setup):
+    // - field_7005342 -> "Volgorde" (number)
+    // - field_7005343 -> "Naam vereniging" (string)
+    // - field_7005438 -> "Thema" (string)
+    // - field_7005440 -> "Rangschikking Zondag - Kleine Karren" (number)
+    // - field_7388914 -> "Rangschikking Zondag - Grote Karren" (number)
+    // - field_7007073 -> "Rangschikking Dinsdag" (number)
     const rows: any[] = data.results || []
     
     // Debug: log first row to see actual field names
@@ -98,14 +99,29 @@ export async function GET() {
           'thema'
         ) || ''
         
-        const rangschikkingZondag = getField(
+        const rangschikkingZondagKleine = getField(
           row, 
-          'Rangschikking Zondag',  // Most likely with capital R and space
+          'Rangschikking Zondag - Kleine Karren',
+          'Rangschikking Zondag - Kleine karren',
+          'Rangschikking zondag - Kleine Karren',
+          'Rangschikking zondag - Kleine karren',
+          'rangschikking_zondag_kleine_karren',
+          'rangschikkingZondagKleineKarren',
+          // Fallbacks to older single-column field names if ever reused
+          'Rangschikking Zondag',
           'Rangschikking zondag',
           'rangschikking_zondag',
-          'rangschikkingZondag',
-          'Rangschikking',  // Fallback to old field name
-          'rangschikking'
+          'rangschikkingZondag'
+        )
+
+        const rangschikkingZondagGrote = getField(
+          row, 
+          'Rangschikking Zondag - Grote Karren',
+          'Rangschikking Zondag - Grote karren',
+          'Rangschikking zondag - Grote Karren',
+          'Rangschikking zondag - Grote karren',
+          'rangschikking_zondag_grote_karren',
+          'rangschikkingZondagGroteKarren'
         )
         
         const rangschikkingDinsdag = getField(
@@ -135,7 +151,8 @@ export async function GET() {
         
         // Convert volgorde to number if it's a string
         const volgordeNum = toNumber(volgorde)
-        const rangschikkingZondagNum = toNumber(rangschikkingZondag)
+        const rangschikkingZondagKleineNum = toNumber(rangschikkingZondagKleine)
+        const rangschikkingZondagGroteNum = toNumber(rangschikkingZondagGrote)
         const rangschikkingDinsdagNum = toNumber(rangschikkingDinsdag)
         
         return {
@@ -143,7 +160,8 @@ export async function GET() {
           volgorde: volgordeNum,
           naamVereniging: String(naamVereniging).trim(),
           thema: String(thema).trim(),
-          rangschikkingZondag: rangschikkingZondagNum,
+          rangschikkingZondagKleine: rangschikkingZondagKleineNum,
+          rangschikkingZondagGrote: rangschikkingZondagGroteNum,
           rangschikkingDinsdag: rangschikkingDinsdagNum,
         }
       })

@@ -7,7 +7,8 @@ interface Stoet {
   volgorde: number | null
   naamVereniging: string
   thema: string
-  rangschikkingZondag: number | null
+  rangschikkingZondagKleine: number | null
+  rangschikkingZondagGrote: number | null
   rangschikkingDinsdag: number | null
 }
 
@@ -92,11 +93,18 @@ export default function Stoeten() {
   // Volgorde stoeten shows ALL stoeten, regardless of rangschikking
   // Rangschikking tables only show stoeten with that specific rangschikking
 
-  // Separate stoeten with Zondag rangschikking
-  const stoetenMetRangschikkingZondag = stoeten.filter(s => s.rangschikkingZondag !== null)
-  const sortedStoetenMetRangschikkingZondag = [...stoetenMetRangschikkingZondag].sort((a, b) => {
-    if (a.rangschikkingZondag === null || b.rangschikkingZondag === null) return 0
-    return a.rangschikkingZondag - b.rangschikkingZondag
+  // Separate stoeten with Zondag rangschikking - Kleine karren
+  const stoetenMetRangschikkingZondagKleine = stoeten.filter(s => s.rangschikkingZondagKleine !== null)
+  const sortedStoetenMetRangschikkingZondagKleine = [...stoetenMetRangschikkingZondagKleine].sort((a, b) => {
+    if (a.rangschikkingZondagKleine === null || b.rangschikkingZondagKleine === null) return 0
+    return a.rangschikkingZondagKleine - b.rangschikkingZondagKleine
+  })
+
+  // Separate stoeten with Zondag rangschikking - Grote karren
+  const stoetenMetRangschikkingZondagGrote = stoeten.filter(s => s.rangschikkingZondagGrote !== null)
+  const sortedStoetenMetRangschikkingZondagGrote = [...stoetenMetRangschikkingZondagGrote].sort((a, b) => {
+    if (a.rangschikkingZondagGrote === null || b.rangschikkingZondagGrote === null) return 0
+    return a.rangschikkingZondagGrote - b.rangschikkingZondagGrote
   })
 
   // Separate stoeten with Dinsdag rangschikking
@@ -133,7 +141,7 @@ export default function Stoeten() {
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-red-600">{error}</p>
               </div>
-            ) : stoeten.length === 0 && sortedStoetenMetRangschikkingZondag.length === 0 && sortedStoetenMetRangschikkingDinsdag.length === 0 ? (
+            ) : stoeten.length === 0 && sortedStoetenMetRangschikkingZondagKleine.length === 0 && sortedStoetenMetRangschikkingZondagGrote.length === 0 && sortedStoetenMetRangschikkingDinsdag.length === 0 ? (
               <div className="w-full text-center py-8">
                 <p className="font-body text-fluid-body text-black">Geen stoeten gevonden.</p>
               </div>
@@ -203,23 +211,23 @@ export default function Stoeten() {
                   </>
                 )}
 
-                {/* Uitslag Rangschikking Stoeten - Zondag */}
-                {sortedStoetenMetRangschikkingZondag.length > 0 && (
+                {/* Uitslag Rangschikking Stoeten - Zondag - Kleine karren */}
+                {sortedStoetenMetRangschikkingZondagKleine.length > 0 && (
                   <div className="flex flex-col gap-8 items-start relative w-full mt-8">
                     <div className="flex flex-col gap-4 items-start justify-center relative text-black text-center w-full">
                       <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase w-full">
-                        Uitslag rangschikking stoeten - Zondag
+                        Uitslag rangschikking stoeten - Zondag - Kleine karren
                       </h2>
                     </div>
                     {/* Mobile: Stacked cards */}
                     <div className="w-full md:hidden flex flex-col gap-4">
-                      {sortedStoetenMetRangschikkingZondag.map((stoet) => (
+                      {sortedStoetenMetRangschikkingZondagKleine.map((stoet) => (
                         <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
                           <div className="flex flex-col gap-2">
                             <div className="flex items-center gap-2">
                               <span className="font-body font-semibold text-black text-fluid-body">Rangschikking:</span>
                               <span className="font-body text-black text-fluid-body">
-                                {stoet.rangschikkingZondag !== null ? stoet.rangschikkingZondag : '-'}
+                                {stoet.rangschikkingZondagKleine !== null ? stoet.rangschikkingZondagKleine : '-'}
                               </span>
                             </div>
                             <div className="flex flex-col gap-1">
@@ -253,10 +261,79 @@ export default function Stoeten() {
                           </tr>
                         </thead>
                         <tbody>
-                          {sortedStoetenMetRangschikkingZondag.map((stoet) => (
+                          {sortedStoetenMetRangschikkingZondagKleine.map((stoet) => (
                             <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
                               <td className="py-4 px-4 text-black font-body text-fluid-body">
-                                {stoet.rangschikkingZondag !== null ? stoet.rangschikkingZondag : '-'}
+                                {stoet.rangschikkingZondagKleine !== null ? stoet.rangschikkingZondagKleine : '-'}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.naamVereniging}
+                              </td>
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.thema || '-'}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* Uitslag Rangschikking Stoeten - Zondag - Grote karren */}
+                {sortedStoetenMetRangschikkingZondagGrote.length > 0 && (
+                  <div className="flex flex-col gap-8 items-start relative w-full mt-8">
+                    <div className="flex flex-col gap-4 items-start justify-center relative text-black text-center w-full">
+                      <h2 className="font-display text-fluid-display tracking-[1.92px] uppercase w-full">
+                        Uitslag rangschikking stoeten - Zondag - Grote karren
+                      </h2>
+                    </div>
+                    {/* Mobile: Stacked cards */}
+                    <div className="w-full md:hidden flex flex-col gap-4">
+                      {sortedStoetenMetRangschikkingZondagGrote.map((stoet) => (
+                        <div key={stoet.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:bg-licht-geel transition-colors">
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-body font-semibold text-black text-fluid-body">Rangschikking:</span>
+                              <span className="font-body text-black text-fluid-body">
+                                {stoet.rangschikkingZondagGrote !== null ? stoet.rangschikkingZondagGrote : '-'}
+                              </span>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <span className="font-body font-semibold text-black text-fluid-body">Naam Vereniging:</span>
+                              <span className="font-body text-black text-fluid-body">{stoet.naamVereniging}</span>
+                            </div>
+                            {stoet.thema && (
+                              <div className="flex flex-col gap-1">
+                                <span className="font-body font-semibold text-black text-fluid-body">Thema:</span>
+                                <span className="font-body text-black text-fluid-body">{stoet.thema}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Desktop: Table */}
+                    <div className="hidden md:block w-full overflow-x-auto">
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-black">
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Rangschikking
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Naam Vereniging
+                            </th>
+                            <th className="font-body font-semibold text-left py-4 px-4 text-black text-fluid-body">
+                              Thema
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {sortedStoetenMetRangschikkingZondagGrote.map((stoet) => (
+                            <tr key={stoet.id} className="border-b border-gray-200 hover:bg-licht-geel transition-colors">
+                              <td className="py-4 px-4 text-black font-body text-fluid-body">
+                                {stoet.rangschikkingZondagGrote !== null ? stoet.rangschikkingZondagGrote : '-'}
                               </td>
                               <td className="py-4 px-4 text-black font-body text-fluid-body">
                                 {stoet.naamVereniging}
