@@ -2,6 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react'
 
+/** Zet op true zodra de nieuwe stoetvolgorde klaar is. */
+const TOON_VOLGORDE_STOETEN = false
+
 interface Stoet {
   id: number
   volgorde: number | null
@@ -50,6 +53,8 @@ export default function Stoeten() {
   }
 
   useEffect(() => {
+    if (!TOON_VOLGORDE_STOETEN) return
+
     // Initial fetch
     fetchStoeten(true)
 
@@ -113,6 +118,10 @@ export default function Stoeten() {
     if (a.rangschikkingDinsdag === null || b.rangschikkingDinsdag === null) return 0
     return a.rangschikkingDinsdag - b.rangschikkingDinsdag
   })
+
+  if (!TOON_VOLGORDE_STOETEN) {
+    return null
+  }
 
   return (
     <section id="stoeten" className="bg-white flex flex-col items-start px-0 py-16 sm:py-24 md:py-32 relative w-full">

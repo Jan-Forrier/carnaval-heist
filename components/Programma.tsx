@@ -10,14 +10,14 @@ export default function Programma() {
               Programma
             </h2>
             <p className="font-decorative font-normal text-fluid-body-lg w-full">
-              14 - 18 Februari
+              6 - 10 Februari
             </p>
           </div>
 
-          {/* Zaterdag 14/2 */}
+          {/* Zaterdag 6/2 */}
           <div className="flex flex-col gap-4 md:gap-8 items-start justify-center relative w-full">
             <p className="font-body font-semibold leading-normal text-fluid-h2 text-black text-center uppercase">
-              Zaterdag 14/2
+              Zaterdag 6/2
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
@@ -45,10 +45,10 @@ export default function Programma() {
             </div>
           </div>
 
-          {/* Zondag 15/2 */}
+          {/* Zondag 7/2 */}
           <div className="flex flex-col gap-8 items-start justify-center relative w-full">
             <p className="font-body font-semibold leading-normal text-fluid-h2 text-black text-center uppercase">
-              Zondag 15/2
+              Zondag 7/2
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
@@ -104,10 +104,10 @@ export default function Programma() {
             </div>
           </div>
 
-          {/* Maandag 16/2 */}
+          {/* Maandag 8/2 */}
           <div className="flex flex-col gap-8 items-start justify-center relative w-full">
             <p className="font-body font-semibold leading-normal text-fluid-h2 text-black text-center uppercase">
-              Maandag 16/2
+              Maandag 8/2
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
@@ -136,10 +136,10 @@ export default function Programma() {
             </div>
           </div>
 
-          {/* Dinsdag 17/2 */}
+          {/* Dinsdag 9/2 */}
           <div className="flex flex-col gap-8 items-start justify-center relative w-full">
             <p className="font-body font-semibold leading-normal text-fluid-h2 text-black text-center uppercase">
-              Dinsdag 17/2
+              Dinsdag 9/2
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
@@ -192,10 +192,10 @@ export default function Programma() {
             </div>
           </div>
 
-          {/* Woensdag 18/2 */}
+          {/* Woensdag 10/2 */}
           <div className="flex flex-col gap-8 items-start justify-center relative w-full">
             <p className="font-body font-semibold leading-normal text-fluid-h2 text-black text-center uppercase">
-              Woensdag 18/2
+              Woensdag 10/2
             </p>
             <div className="flex flex-col gap-4 items-start relative w-full">
               <EventCard
